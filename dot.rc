@@ -1,0 +1,23 @@
+export PYVAR=3.8
+export PYVAR=3.9
+
+# OpenVINO
+if test -f /opt/intel/openvino/bin/setupvars.sh; then
+    source /opt/intel/openvino/bin/setupvars.sh
+fi
+
+# ngraph
+for ng in /opt/intel/openvino/cmake /opt/intel/openvino/deployment_tools/ngraph/cmake; do
+
+    if test -f $ng/ngraphConfig.cmake; then
+	export ngraph_DIR=$ng
+    fi
+done
+
+# OpenCV
+OpenCV_DIR=/opt/intel/openvino/opencv 
+
+if test -d $OpenCV_DIR; then
+    export OpenCV_DIR=$OpenCV_DIR
+    export PYTHONPATH=$OpenCV_DIR/lib/python$PYVAR/site-packages:$PYTHONPATH
+fi
