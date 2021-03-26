@@ -1,6 +1,6 @@
-## Introduction
+## build OpenVINO 2021.3
 
-私の2021-03-26時点の環境。  〜 2021.3 〜
+私の2021-03-26時点の環境。
 
 - Mac
     - macOS Big Sur 11.2.3 / MacBook Air (M1 2020)
