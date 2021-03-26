@@ -4,3 +4,6 @@
 [submodule "openvino_contrib"]
 	path = openvino_contrib
 	url = https://github.com/openvinotoolkit/openvino_contrib.git
+[submodule "opencv"]
+	path = opencv
+	url = https://github.com/opencv/opencv.git
