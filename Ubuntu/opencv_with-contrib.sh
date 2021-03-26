@@ -1,5 +1,9 @@
 # Ubuntu Raspberry Pi4
 
+export PYVAR=3.8
+
+source ../../dot.rc
+
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.3/opencv \
     -DCMAKE_BUILD_TYPE=Release \

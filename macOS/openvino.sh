@@ -1,5 +1,9 @@
 # OpenVINO: maxOS Apple silicon, Intel
 
+export PYVAR=3.9
+
+source ../../dot.rc
+
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.3 \
     -DCMAKE_BUILD_TYPE=Release \

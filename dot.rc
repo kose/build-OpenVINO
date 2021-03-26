@@ -1,5 +1,3 @@
-export PYVAR=3.8
-export PYVAR=3.9
 
 # OpenVINO
 if test -f /opt/intel/openvino/bin/setupvars.sh; then
@@ -15,9 +13,12 @@ for ng in /opt/intel/openvino/cmake /opt/intel/openvino/deployment_tools/ngraph/
 done
 
 # OpenCV
-OpenCV_DIR=/opt/intel/openvino/opencv 
+for oc in /opt/intel/openvino/opencv; do
+    if test -d $oc; then
+	export OpenCV_DIR=$oc
+	export PYTHONPATH=$oc/lib/python$PYVAR/site-packages:$PYTHONPATH
+    fi
+done
 
-if test -d $OpenCV_DIR; then
-    export OpenCV_DIR=$OpenCV_DIR
-    export PYTHONPATH=$OpenCV_DIR/lib/python$PYVAR/site-packages:$PYTHONPATH
-fi
+# end
+
