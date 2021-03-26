@@ -1,3 +1,6 @@
 [submodule "openvino"]
 	path = openvino
 	url = https://github.com/openvinotoolkit/openvino.git
+[submodule "openvino_contrib"]
+	path = openvino_contrib
+	url = https://github.com/openvinotoolkit/openvino_contrib.git
