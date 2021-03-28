@@ -1,6 +1,8 @@
 # OpenVINO: maxOS Apple silicon, Intel
 
-export PYVAR=3.9
+if test "$PYVAR" = ""; then
+    export PYVAR=3.9
+fi
 
 source ../../dot.rc
 
