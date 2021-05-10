@@ -15,4 +15,10 @@ cmake \
     -DPYTHON_INCLUDE_DIR=$HOME/miniforge3/include/python$PYVAR \
     ..
 
+
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ../scripts/setupvars
+    patch --backup --verbose < ../../../setupvars.sh.patch
+fi
+
 # end
