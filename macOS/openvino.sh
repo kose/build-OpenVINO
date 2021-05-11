@@ -1,6 +1,8 @@
 # OpenVINO: maxOS Apple silicon, Intel
 
-export PYVAR=3.9
+if test "$PYVAR" = ""; then
+    export PYVAR=3.9
+fi
 
 source ../../dot.rc
 
@@ -12,5 +14,11 @@ cmake \
     -DPYTHON_LIBRARY=$HOME/miniforge3/lib/libpython$PYVAR.dylib \
     -DPYTHON_INCLUDE_DIR=$HOME/miniforge3/include/python$PYVAR \
     ..
+
+
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ../scripts/setupvars
+    patch --backup --verbose < ../../../setupvars.sh.patch
+fi
 
 # end
