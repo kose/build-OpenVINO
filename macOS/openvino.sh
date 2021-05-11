@@ -7,7 +7,7 @@ fi
 source ../../dot.rc
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.3 \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4 \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_PYTHON=ON \
     -DPYTHON_EXECUTABLE=$HOME/miniforge3/bin/python$PYVAR \
