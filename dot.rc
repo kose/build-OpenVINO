@@ -13,10 +13,10 @@ for ng in /opt/intel/openvino/cmake /opt/intel/openvino/deployment_tools/ngraph/
 done
 
 # OpenCV
-for oc in /opt/intel/openvino/opencv; do
+for oc in /opt/intel/openvino/opencv/lib/cmake/opencv4 /opt/intel/openvino/opencv; do
     if test -d $oc; then
 	export OpenCV_DIR=$oc
-	export PYTHONPATH=$oc/lib/python$PYVAR/site-packages:$PYTHONPATH
+	break
     fi
 done
 

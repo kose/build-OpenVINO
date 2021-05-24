@@ -6,6 +6,10 @@ fi
 
 source ../../dot.rc
 
+if test -d $HOME/miniforge3; then
+    conda install numpy matplotlib cython pandas scipy scikit-learn pyyaml
+fi
+
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4 \
     -DCMAKE_BUILD_TYPE=Release \
