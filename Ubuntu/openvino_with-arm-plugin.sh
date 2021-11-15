@@ -18,4 +18,11 @@ cmake \
     -DBUILD_java_api=OFF \
     ..
 
+#    -DENABLE_MYRIAD=OFF \
+
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ../scripts/setupvars
+    patch --backup --verbose < ../../../setupvars.sh.patch
+fi
+
 # end

@@ -1,5 +1,5 @@
---- setupvars.sh.orig	2021-07-10 10:56:00.000000000 +0900
-+++ setupvars.sh	2021-07-11 13:20:28.000000000 +0900
+--- setupvars.sh.orig	2021-11-14 22:40:51.026981994 +0900
++++ setupvars.sh	2021-11-15 16:05:58.112085203 +0900
 @@ -29,6 +29,13 @@
  shift
  done
@@ -14,7 +14,7 @@
  if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
      export InferenceEngine_DIR=$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/share
      system_type=$(ls "$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/lib/")
-@@ -70,9 +77,10 @@
+@@ -70,9 +77,15 @@
      if [ -f "$INSTALLDIR/opencv/setupvars.sh" ]; then
          source "$INSTALLDIR/opencv/setupvars.sh"
      else
@@ -22,7 +22,12 @@
 +        export OpenCV_DIR="$INSTALLDIR/opencv/lib/cmake/opencv4"
          export LD_LIBRARY_PATH="$INSTALLDIR/opencv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
          export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+        export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/site-packages"
++	if test -d $INSTALLDIR/opencv/lib/python$python_version/site-packages; then
++           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/site-packages"
++	fi
++	if test -d $INSTALLDIR/opencv/lib/python$python_version/dist-packages; then
++           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/dist-packages"
++	fi
      fi
  fi
  
