@@ -16,9 +16,9 @@ cmake \
     -DPYTHON_INCLUDE_DIR=/usr/include/python$PYVAR \
     -DIE_EXTRA_MODULES=../../openvino_contrib/modules \
     -DBUILD_java_api=OFF \
+    -DENABLE_MYRIAD=OFF \
     ..
 
-#    -DENABLE_MYRIAD=OFF \
 
 if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
     cd ../scripts/setupvars
