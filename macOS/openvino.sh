@@ -11,7 +11,7 @@ if test -d $HOME/miniforge3; then
 fi
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.1 \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2 \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_PYTHON=ON \
     -DPYTHON_EXECUTABLE=$HOME/miniforge3/bin/python$PYVAR \

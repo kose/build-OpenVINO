@@ -5,7 +5,7 @@ export PYVAR=3.8
 source ../../dot.rc
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.1 \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2 \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SSE42=OFF \
     -DTHREADING=SEQ \

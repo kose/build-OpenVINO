@@ -12,7 +12,7 @@ if test -d /opt/local; then
 fi
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.1/opencv \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2/opencv \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
