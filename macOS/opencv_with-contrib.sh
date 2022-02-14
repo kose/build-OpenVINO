@@ -6,13 +6,13 @@ fi
 
 source ../../dot.rc
 
-if test -d /opt/local; then
-    sudo port install cmake automake autoconf wget libusb libtool git-lfs tbb gflags
-    sudo port install ffmpeg
-fi
+# if test -d /opt/local; then
+#     sudo port install cmake automake autoconf wget libusb libtool git-lfs tbb gflags
+#     sudo port install ffmpeg
+# fi
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2/opencv \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/opencv \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \

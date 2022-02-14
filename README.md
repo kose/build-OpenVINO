@@ -1,4 +1,4 @@
-## build OpenVINO 2021.4.2
+## build OpenVINO 2022.1
 
 - Intel Mac
     - macOS Monterey / Intel Mac mini
