@@ -1,33 +1,29 @@
---- setupvars.sh.orig	2021-11-14 22:40:51.026981994 +0900
-+++ setupvars.sh	2021-11-15 16:05:58.112085203 +0900
-@@ -29,6 +29,13 @@
- shift
- done
+diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
+index 62f9b5f8..e85361fb 100755
+--- a/scripts/setupvars/setupvars.sh
++++ b/scripts/setupvars/setupvars.sh
+@@ -40,7 +40,7 @@ if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
  
-+if test -d /opt/intel/openvino/python/python3.8; then
-+    python_version=3.8
-+fi
-+if test -d /opt/intel/openvino/python/python3.9; then
-+    python_version=3.9
-+fi
-+
- if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
-     export InferenceEngine_DIR=$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/share
-     system_type=$(ls "$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/lib/")
-@@ -70,9 +77,15 @@
-     if [ -f "$INSTALLDIR/opencv/setupvars.sh" ]; then
-         source "$INSTALLDIR/opencv/setupvars.sh"
+     export HDDL_INSTALL_DIR=$INSTALLDIR/deployment_tools/inference_engine/external/hddl
+     if [[ "$OSTYPE" == "darwin"* ]]; then
+-        export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}${DYLD_LIBRARY_PATH:+:DYLD_LIBRARY_PATH}
++        export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}:$DYLD_LIBRARY_PATH
+         export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
      else
--        export OpenCV_DIR="$INSTALLDIR/opencv/share/OpenCV"
-+        export OpenCV_DIR="$INSTALLDIR/opencv/lib/cmake/opencv4"
-         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+	if test -d $INSTALLDIR/opencv/lib/python$python_version/site-packages; then
-+           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/site-packages"
-+	fi
-+	if test -d $INSTALLDIR/opencv/lib/python$python_version/dist-packages; then
-+           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/dist-packages"
-+	fi
+         export LD_LIBRARY_PATH=$HDDL_INSTALL_DIR/lib:$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/gna/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_lnx/lib:${IE_PLUGINS_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+@@ -55,13 +55,14 @@ fi
+ 
+ if [ -e "$INSTALLDIR/deployment_tools/inference_engine/external/tbb" ]; then
+     if [[ "$OSTYPE" == "darwin"* ]]; then
+-        export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/tbb/lib:${DYLD_LIBRARY_PATH:+:DYLD_LIBRARY_PATH}
++	export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/tbb/lib:$DYLD_LIBRARY_PATH
      fi
+     export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/tbb/lib:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+     export TBB_DIR=$INSTALLDIR/deployment_tools/inference_engine/external/tbb/cmake
  fi
  
+ if [ -e "$INSTALLDIR/deployment_tools/ngraph" ]; then
++    export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/ngraph/lib:$DYLD_LIBRARY_PATH
+     export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/ngraph/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+     export ngraph_DIR=$INSTALLDIR/deployment_tools/ngraph/cmake
+ fi
