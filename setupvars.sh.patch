@@ -1,5 +1,5 @@
 diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
-index 62f9b5f8..e85361fb 100755
+index 62f9b5f8e..b08a59a73 100755
 --- a/scripts/setupvars/setupvars.sh
 +++ b/scripts/setupvars/setupvars.sh
 @@ -40,7 +40,7 @@ if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
@@ -27,3 +27,12 @@ index 62f9b5f8..e85361fb 100755
      export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/ngraph/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
      export ngraph_DIR=$INSTALLDIR/deployment_tools/ngraph/cmake
  fi
+@@ -70,7 +71,7 @@ if [ -e "$INSTALLDIR/opencv" ]; then
+     if [ -f "$INSTALLDIR/opencv/setupvars.sh" ]; then
+         source "$INSTALLDIR/opencv/setupvars.sh"
+     else
+-        export OpenCV_DIR="$INSTALLDIR/opencv/share/OpenCV"
++        export OpenCV_DIR="$INSTALLDIR/opencv/lib/cmake/opencv4"
+         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+     fi
