@@ -4,13 +4,6 @@ if test "$PYVAR" = ""; then
     export PYVAR=3.9
 fi
 
-source ../../dot.rc
-
-if test -d /opt/local; then
-    sudo port install cmake automake autoconf wget libusb libtool git-lfs tbb gflags
-    sudo port install ffmpeg
-fi
-
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2/opencv \
     -DCMAKE_BUILD_TYPE=Release \

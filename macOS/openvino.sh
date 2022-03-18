@@ -4,10 +4,8 @@ if test "$PYVAR" = ""; then
     export PYVAR=3.9
 fi
 
-source ../../dot.rc
-
 if test -d $HOME/miniforge3; then
-    conda install numpy matplotlib cython pandas scipy scikit-learn pyyaml
+    conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml
 fi
 
 cmake \
