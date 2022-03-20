@@ -1,15 +1,11 @@
 # OpenCV: macOS Apple silicon, Intel
 
-if test "$PYVAR" = ""; then
-    export PYVAR=3.9
+python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
+
+if test ! -x $HOME/miniforge3/bin/python$python_version; then
+    echo "No exist: $HOME/miniforge3/bin/python$python_version"
+    exit 0
 fi
-
-source ../../dot.rc
-
-# if test -d /opt/local; then
-#     sudo port install cmake automake autoconf wget libusb libtool git-lfs tbb gflags
-#     sudo port install ffmpeg
-# fi
 
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/opencv \
@@ -17,9 +13,9 @@ cmake \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
     -DWITH_TBB=ON \
-    -DPYTHON3_EXECUTABLE=$HOME/miniforge3/bin/python$PYVAR \
-    -DPYTHON3_LIBRARY=$HOME/miniforge3/lib/libpython$PYVAR.dylib \
-    -DPYTHON3_INCLUDE_DIR=$HOME/miniforge3/include/python$PYVAR \
+    -DPYTHON3_EXECUTABLE=$HOME/miniforge3/bin/python$python_version \
+    -DPYTHON3_LIBRARY=$HOME/miniforge3/lib/libpython$python_version.dylib \
+    -DPYTHON3_INCLUDE_DIR=$HOME/miniforge3/include/python$python_version \
     ..
 
 # end
