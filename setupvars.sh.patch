@@ -1,17 +1,41 @@
+diff --git a/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp b/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
+index 42a2d59d0..661e92e42 100644
+--- a/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
++++ b/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
+@@ -4,6 +4,8 @@
+ 
+ #pragma once
+ 
++#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
++
+ #include <cstddef>
+ #include <map>
+ #include <string>
 diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
-index 62f9b5f8e..b08a59a73 100755
+index 62f9b5f8e..473126bcb 100755
 --- a/scripts/setupvars/setupvars.sh
 +++ b/scripts/setupvars/setupvars.sh
-@@ -40,7 +40,7 @@ if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
+@@ -1,5 +1,8 @@
+ #!/bin/bash
+ 
++export LD_LIBRARY_PATH=
++export DYLD_LIBRARY_PATH=
++
+ # Copyright (C) 2018-2021 Intel Corporation
+ # SPDX-License-Identifier: Apache-2.0
+ 
+@@ -40,8 +43,8 @@ if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
  
      export HDDL_INSTALL_DIR=$INSTALLDIR/deployment_tools/inference_engine/external/hddl
      if [[ "$OSTYPE" == "darwin"* ]]; then
 -        export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}${DYLD_LIBRARY_PATH:+:DYLD_LIBRARY_PATH}
-+        export DYLD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}:$DYLD_LIBRARY_PATH
-         export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+-        export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_mac/lib:${IE_PLUGINS_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
++        export DYLD_LIBRARY_PATH=${IE_PLUGINS_PATH}:$DYLD_LIBRARY_PATH
++        export LD_LIBRARY_PATH=${IE_PLUGINS_PATH}:$LD_LIBRARY_PATH
      else
          export LD_LIBRARY_PATH=$HDDL_INSTALL_DIR/lib:$INSTALLDIR/deployment_tools/inference_engine/external/omp/lib:$INSTALLDIR/deployment_tools/inference_engine/external/gna/lib:$INSTALLDIR/deployment_tools/inference_engine/external/mkltiny_lnx/lib:${IE_PLUGINS_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-@@ -55,13 +55,14 @@ fi
+     fi
+@@ -55,13 +58,14 @@ fi
  
  if [ -e "$INSTALLDIR/deployment_tools/inference_engine/external/tbb" ]; then
      if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -27,12 +51,16 @@ index 62f9b5f8e..b08a59a73 100755
      export LD_LIBRARY_PATH=$INSTALLDIR/deployment_tools/ngraph/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
      export ngraph_DIR=$INSTALLDIR/deployment_tools/ngraph/cmake
  fi
-@@ -70,7 +71,7 @@ if [ -e "$INSTALLDIR/opencv" ]; then
+@@ -70,9 +74,10 @@ if [ -e "$INSTALLDIR/opencv" ]; then
      if [ -f "$INSTALLDIR/opencv/setupvars.sh" ]; then
          source "$INSTALLDIR/opencv/setupvars.sh"
      else
 -        export OpenCV_DIR="$INSTALLDIR/opencv/share/OpenCV"
 +        export OpenCV_DIR="$INSTALLDIR/opencv/lib/cmake/opencv4"
++	export DYLD_LIBRARY_PATH=$INSTALLDIR/opencv/lib:$DYLD_LIBRARY_PATH
          export LD_LIBRARY_PATH="$INSTALLDIR/opencv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+-        export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++        # export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
      fi
+ fi
+ 
