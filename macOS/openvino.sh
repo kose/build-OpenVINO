@@ -22,8 +22,8 @@ cmake \
 
 
 if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
-    cd ../scripts/setupvars
-    patch --backup --verbose < ../../../setupvars.sh.patch
+    cd ..
+    patch --backup --verbose -p1 < ../openvino.patch
 fi
 
 # end
