@@ -8,7 +8,7 @@
 
 ## build
 
-もしビルドエラーになる場合は、
+もしビルドエラーになる場合は、 (MacPortでだけ、Homebrewではエラーにならない）
 ```
 [ 58%] Building CXX object ngraph/test/runtime/interpreter/CMakeFiles/interpreter_backend.dir/evaluates_map.cpp.o
 In file included from /Users/kose/github/build-OpenVINO-2021.4.2/openvino/ngraph/test/runtime/interpreter/evaluates_map.cpp:25:
