@@ -1,3 +1,16 @@
+diff --git a/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp b/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
+index 42a2d59d0..661e92e42 100644
+--- a/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
++++ b/ngraph/core/reference/include/ngraph/runtime/reference/detection_output.hpp
+@@ -4,6 +4,8 @@
+ 
+ #pragma once
+ 
++#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
++
+ #include <cstddef>
+ #include <map>
+ #include <string>
 diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
 index 62f9b5f8e..473126bcb 100755
 --- a/scripts/setupvars/setupvars.sh
