@@ -23,9 +23,9 @@ cmake \
     ..
 
 
-# if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
-#     cd ../scripts/setupvars
-#     patch --backup --verbose < ../../../setupvars.sh.patch
-# fi
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ..
+    patch --backup --verbose -p1 < ../setupvars.sh.patch
+fi
 
 # end

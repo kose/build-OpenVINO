@@ -1,33 +1,24 @@
---- setupvars.sh.orig	2021-11-14 22:40:51.026981994 +0900
-+++ setupvars.sh	2021-11-15 16:05:58.112085203 +0900
-@@ -29,6 +29,13 @@
- shift
- done
- 
-+if test -d /opt/intel/openvino/python/python3.8; then
-+    python_version=3.8
-+fi
-+if test -d /opt/intel/openvino/python/python3.9; then
-+    python_version=3.9
-+fi
-+
- if [ -e "$INSTALLDIR/deployment_tools/inference_engine" ]; then
-     export InferenceEngine_DIR=$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/share
-     system_type=$(ls "$INTEL_OPENVINO_DIR/deployment_tools/inference_engine/lib/")
-@@ -70,9 +77,15 @@
-     if [ -f "$INSTALLDIR/opencv/setupvars.sh" ]; then
-         source "$INSTALLDIR/opencv/setupvars.sh"
-     else
--        export OpenCV_DIR="$INSTALLDIR/opencv/share/OpenCV"
-+        export OpenCV_DIR="$INSTALLDIR/opencv/lib/cmake/opencv4"
-         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-         export LD_LIBRARY_PATH="$INSTALLDIR/opencv/share/OpenCV/3rdparty/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+	if test -d $INSTALLDIR/opencv/lib/python$python_version/site-packages; then
-+           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/site-packages"
-+	fi
-+	if test -d $INSTALLDIR/opencv/lib/python$python_version/dist-packages; then
-+           export PYTHONPATH="$PYTHONPATH:$INSTALLDIR/opencv/lib/python$python_version/dist-packages"
-+	fi
-     fi
+diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
+index ab186881d..992301bb1 100755
+--- a/scripts/setupvars/setupvars.sh
++++ b/scripts/setupvars/setupvars.sh
+@@ -72,11 +72,14 @@ if [ -z "$python_version" ]; then
+     python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
  fi
  
+-version_arr=(${python_version//./ })
+-if [ "${#version_arr[@]}" -ge "2" ]; then
+-    python_version_major=${version_arr[0]}
+-    python_version_minor=${version_arr[1]}
+-fi
++# version_arr=(${python_version//./ })
++# if [ "${#version_arr[@]}" -ge "2" ]; then
++#     python_version_major=${version_arr[0]}
++#     python_version_minor=${version_arr[1]}
++# fi
++
++python_version_major=$(python3 -c 'import sys; print(str(sys.version_info[0]))')
++python_version_minor=$(python3 -c 'import sys; print(str(sys.version_info[1]))')
+ 
+ PYTHON_VERSION_MAJOR="3"
+ MIN_REQUIRED_PYTHON_VERSION_MINOR="6"
