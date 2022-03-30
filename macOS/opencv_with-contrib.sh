@@ -14,6 +14,7 @@ cmake \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
     -DWITH_TBB=ON \
+    -DBUILD_ZLIB=OFF \
     -DPYTHON3_EXECUTABLE=$HOME/miniforge3/bin/python$python_version \
     -DPYTHON3_LIBRARY=$HOME/miniforge3/lib/libpython$python_version.dylib \
     -DPYTHON3_INCLUDE_DIR=$HOME/miniforge3/include/python$python_version \
