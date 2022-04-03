@@ -18,7 +18,14 @@ cmake \
     -DPYTHON_EXECUTABLE=$HOME/miniforge3/bin/python$python_version \
     -DPYTHON_LIBRARY=$HOME/miniforge3/lib/libpython$python_version.dylib \
     -DPYTHON_INCLUDE_DIR=$HOME/miniforge3/include/python$python_version \
-    -DIE_EXTRA_MODULES=../../openvino_contrib/modules \
+    -DENABLE_BEH_TESTS=OFF \
+    -DENABLE_CLDNN=OFF \
+    -DENABLE_FUNCTIONAL_TESTS=OFF \
+    -DENABLE_MKL_DNN=ON \
+    -DENABLE_TESTS=OFF \
+    -DTHREADING=SEQ \
+    -DARM_COMPUTE_SCONS_JOBS=4 \
+    -DIE_EXTRA_MODULES=`pwd`/../../openvino_contrib/modules \
     -DBUILD_java_api=OFF \
     ..
 
