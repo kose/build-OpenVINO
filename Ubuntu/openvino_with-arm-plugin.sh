@@ -11,9 +11,8 @@ cmake \
     -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
     -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
     -DPYTHON_INCLUDE_DIR=/usr/include/python$python_version \
-    -DIE_EXTRA_MODULES=../../openvino_contrib/modules \
+    -DIE_EXTRA_MODULES=`pwd`/../../openvino_contrib/modules \
     -DBUILD_java_api=OFF \
-    -DENABLE_MYRIAD=OFF \
     ..
 
 if test ! -f ../scripts/setupvars/setupvars.sh.orig; then

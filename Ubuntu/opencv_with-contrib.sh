@@ -11,7 +11,7 @@ cmake \
     -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
     -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
     -DPYTHON_INCLUDE_DIR=/usr/include/python$python_version \
-    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+    -DOPENCV_EXTRA_MODULES_PATH=`pwd`/../../opencv_contrib/modules \
     ..
 
 # end
