@@ -1,19 +1,21 @@
 # OpenVINO: Ubuntu Raspberry Pi4
 
-export PYVAR=3.8
-
-source ../../dot.rc
+python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
 
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2 \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SSE42=OFF \
     -DTHREADING=SEQ \
-    -DENABLE_GNA=OFF \
     -DENABLE_PYTHON=ON \
-    -DPYTHON_EXECUTABLE=/usr/bin/python$PYVAR \
-    -DPYTHON_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython$PYVAR.so \
-    -DPYTHON_INCLUDE_DIR=/usr/include/python$PYVAR \
+    -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
+    -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
+    -DPYTHON_INCLUDE_DIR=/usr/include/python$python_version \
     ..
+
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ../scripts/setupvars
+    patch --backup --verbose < ../../../setupvars.sh.patch
+fi
 
 # end

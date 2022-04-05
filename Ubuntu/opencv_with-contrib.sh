@@ -1,8 +1,6 @@
 # Ubuntu Raspberry Pi4
 
-export PYVAR=3.8
-
-source ../../dot.rc
+python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
 
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2021.4.2/opencv \
@@ -10,10 +8,10 @@ cmake \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
     -DWITH_TBB=ON \
-    -DPYTHON_EXECUTABLE=/usr/bin/python$PYVAR \
-    -DPYTHON_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython$PYVAR.so \
-    -DPYTHON_INCLUDE_DIR=/usr/include/python$PYVAR \
-    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+    -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
+    -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
+    -DPYTHON_INCLUDE_DIR=/usr/include/python$python_version \
+    -DOPENCV_EXTRA_MODULES_PATH=`pwd`/../../opencv_contrib/modules \
     ..
 
 # end
