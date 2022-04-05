@@ -7,7 +7,6 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SSE42=OFF \
     -DTHREADING=SEQ \
-    -DENABLE_GNA=OFF \
     -DENABLE_PYTHON=ON \
     -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
     -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
