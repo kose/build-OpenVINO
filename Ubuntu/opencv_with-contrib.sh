@@ -3,7 +3,7 @@
 python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/opencv \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/extras/opencv \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
