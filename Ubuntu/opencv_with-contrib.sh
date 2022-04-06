@@ -8,6 +8,7 @@ cmake \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
     -DWITH_TBB=ON \
+    -DWITH_1394=OFF \
     -DPYTHON_EXECUTABLE=/usr/bin/python$python_version \
     -DPYTHON_LIBRARY=/usr/lib/`arch`-linux-gnu/libpython$python_version.so \
     -DPYTHON_INCLUDE_DIR=/usr/include/python$python_version \
