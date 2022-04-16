@@ -29,7 +29,6 @@ cmake \
     -DBUILD_java_api=OFF \
     ..
 
-
 if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
     cd ..
     patch --backup --verbose -p1 < ../setupvars.sh.patch
