@@ -8,7 +8,7 @@ if test ! -x $HOME/miniforge3/bin/python$python_version; then
 fi
 
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/opencv \
+    -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1/extras/opencv \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
@@ -20,5 +20,3 @@ cmake \
     ..
 
 # end
-
-
