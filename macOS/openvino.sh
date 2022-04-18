@@ -8,12 +8,23 @@ if test ! -x $HOME/miniforge3/bin/python$python_version; then
 fi
 
 #
-conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml
+conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml pybind11
+
+#
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ..
+    patch --backup --verbose -p1 < ../setupvars.sh.patch || exit -1
+fi
 
 #
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1 \
     -DCMAKE_BUILD_TYPE=Release \
+    -DENABLE_SSE42=OFF \
+    -DTHREADING=SEQ \
+    -DENABLE_GNA=OFF \
+    -DENABLE_MKL_DNN=ON \
+    -DARM_COMPUTE_SCONS_JOBS=4 \
     -DENABLE_PYTHON=ON \
     -DPYTHON_EXECUTABLE=$HOME/miniforge3/bin/python$python_version \
     -DPYTHON_LIBRARY=$HOME/miniforge3/lib/libpython$python_version.dylib \
@@ -21,10 +32,5 @@ cmake \
     .. \
     && make -j 6 2>&1 | tee /tmp/`basename $0`.log
 
-#
-if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
-    cd ..
-    patch --backup --verbose -p1 < ../setupvars.sh.patch
-fi
-
+exit 0
 # end

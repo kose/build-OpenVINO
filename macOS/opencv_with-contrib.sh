@@ -1,6 +1,5 @@
 # OpenCV: macOS Apple silicon, Intel
 
-
 python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
 
 #
@@ -15,7 +14,8 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_INF_ENGINE=ON \
     -DENABLE_CXX11=ON \
-    -DWITH_TBB=ON \
+    -DBUILD_TBB=ON \
+    -DBUILD_opencv_gapi=ON \
     -DBUILD_ZLIB=OFF \
     -DPYTHON3_EXECUTABLE=$HOME/miniforge3/bin/python$python_version \
     -DPYTHON3_LIBRARY=$HOME/miniforge3/lib/libpython$python_version.dylib \
@@ -24,4 +24,5 @@ cmake \
     .. \
     && make -j 6 2>&1 | tee /tmp/`basename $0`.log
 
+exit 0
 # end

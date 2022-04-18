@@ -11,6 +11,12 @@ fi
 conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml pybind11
 
 #
+if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
+    cd ..
+    patch --backup --verbose -p1 < ../setupvars.sh.patch || exit -1
+fi
+
+#
 cmake \
     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.1 \
     -DCMAKE_BUILD_TYPE=Release \
@@ -27,10 +33,5 @@ cmake \
     .. \
     && make -j 6 2>&1 | tee /tmp/`basename $0`.log
 
-#
-if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
-    cd ..
-    patch --backup --verbose -p1 < ../setupvars.sh.patch
-fi
-
+exit 0
 # end
