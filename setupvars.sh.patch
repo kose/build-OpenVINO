@@ -1,8 +1,8 @@
 diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
-index ab186881..0e8cabf3 100755
+index ab186881..7b4c3740 100755
 --- a/scripts/setupvars/setupvars.sh
 +++ b/scripts/setupvars/setupvars.sh
-@@ -68,16 +68,29 @@ if [ -f "$INSTALLDIR/extras/opencv/setupvars.sh" ]; then
+@@ -68,19 +68,32 @@ if [ -f "$INSTALLDIR/extras/opencv/setupvars.sh" ]; then
      source "$INSTALLDIR/extras/opencv/setupvars.sh"
  fi
  
@@ -16,23 +16,23 @@ index ab186881..0e8cabf3 100755
      python_version=$(python3 -c 'import sys; print(str(sys.version_info[0])+"."+str(sys.version_info[1]))')
  fi
  
--version_arr=(${python_version//./ })
--if [ "${#version_arr[@]}" -ge "2" ]; then
--    python_version_major=${version_arr[0]}
--    python_version_minor=${version_arr[1]}
 +if [ -d $INSTALLDIR/extras/opencv/lib/python$python_version/site-packages/cv2 ]; then
 +    export PYTHONPATH=$INSTALLDIR/extras/opencv/lib/python$python_version/site-packages
++fi
++
+ version_arr=(${python_version//./ })
+ if [ "${#version_arr[@]}" -ge "2" ]; then
+     python_version_major=${version_arr[0]}
+     python_version_minor=${version_arr[1]}
  fi
  
-+# version_arr=(${python_version//./ })
-+# if [ "${#version_arr[@]}" -ge "2" ]; then
-+#     python_version_major=${version_arr[0]}
-+#     python_version_minor=${version_arr[1]}
-+# fi
-+
 +python_version_major=$(python3 -c 'import sys; print(str(sys.version_info[0]))')
 +python_version_minor=$(python3 -c 'import sys; print(str(sys.version_info[1]))')
 +
  PYTHON_VERSION_MAJOR="3"
  MIN_REQUIRED_PYTHON_VERSION_MINOR="6"
- MAX_SUPPORTED_PYTHON_VERSION_MINOR="9"
+-MAX_SUPPORTED_PYTHON_VERSION_MINOR="9"
++MAX_SUPPORTED_PYTHON_VERSION_MINOR="10"
+ 
+ if  [ "$PYTHON_VERSION_MAJOR" != "$python_version_major" ] ||
+     [ "$python_version_minor" -lt "$MIN_REQUIRED_PYTHON_VERSION_MINOR" ] ||
