@@ -12,7 +12,7 @@ conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml pybind
 
 #
 (cmake \
-     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.2 \
+     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.3 \
      -DCMAKE_BUILD_TYPE=Release \
      -DENABLE_SSE42=OFF \
      -DTHREADING=SEQ \

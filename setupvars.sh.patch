@@ -1,13 +1,13 @@
 diff --git a/scripts/setupvars/setupvars.sh b/scripts/setupvars/setupvars.sh
-index 451c51fab..cca560134 100755
+index 29ee4e1c35..62495b4e13 100755
 --- a/scripts/setupvars/setupvars.sh
 +++ b/scripts/setupvars/setupvars.sh
-@@ -113,7 +113,7 @@ fi
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2018-2022 Intel Corporation
+ # SPDX-License-Identifier: Apache-2.0
  
- PYTHON_VERSION_MAJOR="3"
- MIN_REQUIRED_PYTHON_VERSION_MINOR="6"
--MAX_SUPPORTED_PYTHON_VERSION_MINOR="9"
-+MAX_SUPPORTED_PYTHON_VERSION_MINOR="10"
+-SCRIPT_DIR="$( cd "$( dirname "$(realpath "${BASH_SOURCE[0]}")" )" >/dev/null 2>&1 && pwd )"
++SCRIPT_DIR=`dirname $0`
+ INSTALLDIR="${SCRIPT_DIR}"
+ export INTEL_OPENVINO_DIR="$INSTALLDIR"
  
- if  [ "$PYTHON_VERSION_MAJOR" != "$python_version_major" ] ||
-     [ "$python_version_minor" -lt "$MIN_REQUIRED_PYTHON_VERSION_MINOR" ] ||
