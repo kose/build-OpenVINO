@@ -12,7 +12,7 @@ conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml pybind
 
 #
 (cmake \
-     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2022.3 \
+     -DCMAKE_INSTALL_PREFIX=/opt/intel/openvino_2023.0 \
      -DCMAKE_BUILD_TYPE=Release \
      -DENABLE_SSE42=OFF \
      -DTHREADING=SEQ \
@@ -26,7 +26,7 @@ conda install -y numpy matplotlib cython pandas scipy scikit-learn pyyaml pybind
      .. \
      && make -j 6) 2>&1 | tee /tmp/`basename $0`.log
 
-#
+
 if test ! -f ../scripts/setupvars/setupvars.sh.orig; then
     cd ..
     patch --backup --verbose -p1 < ../setupvars.sh.patch || exit -1
